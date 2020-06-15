@@ -21,7 +21,7 @@ class Server {
         this.clientes = new clientes_1.Clientes();
         this.app = express_1.default();
         this.app.use((req, res, next) => {
-            res.header("Access-Control-Allow-Origin", "http://localhost:4200");
+            res.header("Access-Control-Allow-Origin", "*");
             res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
             res.header("Access-Control-Allow-Methods", "GET, POST");
             res.header("Allow", "GET, POST");
@@ -108,7 +108,7 @@ class Server {
     start() {
         this.httpServer.listen(this.puerto, () => {
             sequelize_1.sequelize
-                .sync({ force: true })
+                .sync({ force: false })
                 .then(() => {
                 console.log("BD creada con éxitoo");
             })
